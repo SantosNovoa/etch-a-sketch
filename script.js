@@ -7,8 +7,8 @@ const reset = document.querySelector(".reset");
 reset.addEventListener("click", clearGrid);
 const toggle = document.querySelector(".toggle");
 toggle.addEventListener("click", toggleGridLines);
-
-
+const rainbow = document.querySelector(".rainbow")
+rainbow.addEventListener("click", toggleRainbowColor);
 
 
 function createGrid(x) {
@@ -28,6 +28,8 @@ function createGrid(x) {
     }
     screen.appendChild(row);
   }
+
+  // Allows the user to click and hold to color on the grid
   const cells = Array.from(document.getElementsByClassName('cell'));
       let isDrawing = false; 
       window.onmouseup = () => { isDrawing = false; }
@@ -43,6 +45,22 @@ function toggleGridLines() {
     cell.classList.toggle("no-border");
   });
 }
+
+function toggleRainbowColor() {
+  const cells = Array.from(document.getElementsByClassName('cell'));
+      let isDrawing = false; 
+      window.onmouseup = () => { isDrawing = false; }
+      cells.forEach(cell => {
+          cell.onmouseover = () => { if(isDrawing) cell.style.backgroundColor=getRandomColor();; }
+          cell.onmousedown = () => { cell.style.backgroundColor=getRandomColor();; isDrawing = true; }                  
+      });
+}
+
+const getRandomColor = () => {
+  color = `hsl(${Math.random() * 360}, 100%, 50%)`
+  return color;
+}
+
 
 function clearGrid() {
   const cells = document.querySelectorAll(".cell");
