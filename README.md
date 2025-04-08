@@ -1,5 +1,7 @@
 # Etch-a-Sketch Grid Drawing App 🎨
 
+![Screenshot of the grid](eas.png "Etch-a-Sketch Preview")
+
 A browser-based drawing app inspired by the classic Etch-a-Sketch. You can draw on a grid with your mouse, pick colors, use rainbow mode, and toggle grid lines.
 
 ---
