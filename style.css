@@ -9,6 +9,7 @@
 }
 .cell {
     border: 0.01px solid rgb(180, 178, 178);
+    box-sizing: border-box;
 }
 
 
