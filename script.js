@@ -1,6 +1,5 @@
 const screen = document.querySelector(".screen");
-const inputElement = document.getElementById("quantity");
-const inputValue = inputElement.value;
+const gridSizeInput = document.getElementById("quantity");
 const form = document.getElementById("my_form");
 form.addEventListener("submit", submitForm);
 const reset = document.querySelector(".reset");
@@ -18,6 +17,7 @@ document.getElementById("colorPicker").addEventListener("input", () => {
   currentColorMode = "custom";
 });
 
+//default color 
 let currentColorMode = "black";
 
 
@@ -62,16 +62,8 @@ function toggleGridLines() {
   });
 }
 
-function toggleRainbowColor() {
-  const cells = Array.from(document.getElementsByClassName('cell'));
-      let isDrawing = false; 
-      window.onmouseup = () => { isDrawing = false; }
-      cells.forEach(cell => {
-          cell.onmouseover = () => { if(isDrawing) cell.style.backgroundColor= getRandomColor();; }
-          cell.onmousedown = () => { cell.style.backgroundColor= getRandomColor();; isDrawing = true; }                  
-      });
-}
 
+// rainbow mode generator
 const getRandomColor = () => {
   color = `hsl(${Math.random() * 360}, 100%, 50%)`
   return color;
@@ -88,7 +80,7 @@ function clearGrid() {
 function submitForm(e) {
   e.preventDefault(); // stop page from reloading
   screen.innerHTML = "";
-  const size = Number(inputElement.value);
+  const size = Number(gridSizeInput.value);
   createGrid(size);
 }
 
