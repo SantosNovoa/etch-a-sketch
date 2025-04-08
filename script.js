@@ -1,9 +1,12 @@
 const screen = document.querySelector(".screen");
-const cell = document.querySelector("cell");
 const inputElement = document.getElementById("quantity");
 const inputValue = inputElement.value;
 const form = document.getElementById("my_form");
-form.addEventListener('submit', submitForm);
+form.addEventListener("submit", submitForm);
+const reset = document.querySelector(".reset");
+reset.addEventListener("click", clearGrid);
+const toggle = document.querySelector(".toggle");
+toggle.addEventListener("click", toggleGridLines);
 
 
 
@@ -34,14 +37,20 @@ function createGrid(x) {
       });
 }
 
-
-
-function clearGrid() {
-  cell.remove();
+function toggleGridLines() {
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach(cell => {
+    cell.classList.toggle("no-border");
+  });
 }
 
-console.log(16)
-// Create a 16x16 table
+function clearGrid() {
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach(cell => {
+    cell.style.removeProperty("background-color");
+  })
+}
+
 function submitForm(e) {
   e.preventDefault(); // stop page from reloading
   screen.innerHTML = "";
