@@ -7,8 +7,18 @@ const reset = document.querySelector(".reset");
 reset.addEventListener("click", clearGrid);
 const toggle = document.querySelector(".toggle");
 toggle.addEventListener("click", toggleGridLines);
-const rainbow = document.querySelector(".rainbow")
-rainbow.addEventListener("click", toggleRainbowColor);
+
+
+
+document.querySelector(".rainbow").addEventListener("click", () => {
+  currentColorMode = "rainbow";
+});
+
+document.getElementById("colorPicker").addEventListener("input", () => {
+  currentColorMode = "custom";
+});
+
+let currentColorMode = "black";
 
 
 function createGrid(x) {
@@ -29,13 +39,19 @@ function createGrid(x) {
     screen.appendChild(row);
   }
 
+  function getCurrentColor() {
+    if (currentColorMode === "rainbow") return getRandomColor();
+    if (currentColorMode === "custom") return document.getElementById("colorPicker").value;
+    return "black";
+  }
+
   // Allows the user to click and hold to color on the grid
   const cells = Array.from(document.getElementsByClassName('cell'));
       let isDrawing = false; 
       window.onmouseup = () => { isDrawing = false; }
       cells.forEach(cell => {
-          cell.onmouseover = () => { if(isDrawing) cell.style.backgroundColor="black"; }
-          cell.onmousedown = () => { cell.style.backgroundColor="black"; isDrawing = true; }                  
+          cell.onmouseover = () => { if(isDrawing) cell.style.backgroundColor = getCurrentColor(); }
+          cell.onmousedown = () => { cell.style.backgroundColor= getCurrentColor(); isDrawing = true; }                  
       });
 }
 
@@ -51,8 +67,8 @@ function toggleRainbowColor() {
       let isDrawing = false; 
       window.onmouseup = () => { isDrawing = false; }
       cells.forEach(cell => {
-          cell.onmouseover = () => { if(isDrawing) cell.style.backgroundColor=getRandomColor();; }
-          cell.onmousedown = () => { cell.style.backgroundColor=getRandomColor();; isDrawing = true; }                  
+          cell.onmouseover = () => { if(isDrawing) cell.style.backgroundColor= getRandomColor();; }
+          cell.onmousedown = () => { cell.style.backgroundColor= getRandomColor();; isDrawing = true; }                  
       });
 }
 
