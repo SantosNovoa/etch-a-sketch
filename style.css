@@ -1,3 +1,15 @@
-body {
-    background-color: black;
+
+.screen {
+    width: 660px;
+    height: 660px;
+    margin: 0 auto;
 }
+.row {
+    display: flex;
+}
+.cell {
+    border: 0.01px solid rgb(180, 178, 178);
+}
+
+
+
