@@ -51,7 +51,8 @@ function createGrid(x) {
       window.onmouseup = () => { isDrawing = false; }
       cells.forEach(cell => {
           cell.onmouseover = () => { if(isDrawing) cell.style.backgroundColor = getCurrentColor(); }
-          cell.onmousedown = () => { cell.style.backgroundColor= getCurrentColor(); isDrawing = true; }                  
+          cell.onmousedown = (e) => { cell.style.backgroundColor= getCurrentColor(); isDrawing = true 
+            e.preventDefault(); }                  
       });
 }
 
