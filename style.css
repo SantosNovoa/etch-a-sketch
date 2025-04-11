@@ -41,6 +41,7 @@ body {
   width: 660px;
   margin: 0 auto;
   color: black;
+  border-top: 0.01px solid rgb(180, 178, 178);
 }
 
 .footer{
